@@ -1,4 +1,4 @@
-#Crypto-Invest
+Crypto-Invest
 
 A modern cryptocurrency investment tracker and portfolio manager.
 
