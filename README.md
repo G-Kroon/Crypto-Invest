@@ -90,17 +90,15 @@ Open a pull request.
 📜 License
 This project is licensed under the MIT License. See LICENSE for details.  
 
-📧 Contact
-For questions or feedback, reach out to:  
-
-Email: support@crypto-invest.com
-Twitter: @CryptoInvestApp
 GitHub Issues: Report a bug. 
 
 ✨ Happy Investing! ✨
 
 
-This `README.md` includes all essential sections (features, installation, usage, etc.) with proper Markdown formatting (headings, lists, code blocks, and links). Let me know if you'd like any modifications!
+This is a sample web application, feel free to fork this repository, make improvements and call it your own. 
+
+This web application was built for educational purposes only. 
+
 
 
 
