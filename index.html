@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoInvest - Cryptocurrency Investment Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-coins"></i>
+                    <span>CryptoInvest</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#"><i class="fas fa-home"></i> Dashboard</a>
+                    <a href="#"><i class="fas fa-chart-line"></i> Markets</a>
+                    <a href="#"><i class="fas fa-wallet"></i> Portfolio</a>
+                    <a href="#"><i class="fas fa-exchange-alt"></i> Trade</a>
+                </div>
+                <div class="auth-buttons">
+                    <button class="btn btn-outline">Log In</button>
+                    <button class="btn btn-primary">Sign Up</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Invest in the Future of Finance</h1>
+            <p>Join millions of users investing in cryptocurrencies with our secure, easy-to-use platform. Start your investment journey today with $10 minimum.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">Get Started</button>
+                <button class="btn btn-outline">View Markets</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard -->
+    <div class="container">
+        <div class="dashboard">
+            <!-- Portfolio Summary -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Portfolio Summary</h2>
+                    <div class="card-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                </div>
+                <div class="portfolio-summary">
+                    <div class="summary-item">
+                        <span class="summary-label">Total Balance</span>
+                        <span class="summary-value">$12,450.75</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">24h Change</span>
+                        <span class="summary-value positive">+$320.50 (2.64%)</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Invested</span>
+                        <span class="summary-value">$8,200.00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Profit/Loss</span>
+                        <span class="summary-value positive">+$4,250.75 (51.84%)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Cryptocurrencies -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Top Cryptocurrencies</h2>
+                    <div class="card-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                </div>
+                <div class="crypto-list">
+                    <div class="crypto-item" data-crypto="btc">
+                        <div class="crypto-icon" style="background: #f7931a;">
+                            <i class="fab fa-bitcoin"></i>
+                        </div>
+                        <div class="crypto-info">
+                            <div class="crypto-name">Bitcoin</div>
+                            <div class="crypto-symbol">BTC</div>
+                        </div>
+                        <div class="crypto-price">$43,250.75</div>
+                        <div class="crypto-change positive">+2.5%</div>
+                    </div>
+                    <div class="crypto-item" data-crypto="eth">
+                        <div class="crypto-icon" style="background: #627eea;">
+                            <i class="fab fa-ethereum"></i>
+                        </div>
+                        <div class="crypto-info">
+                            <div class="crypto-name">Ethereum</div>
+                            <div class="crypto-symbol">ETH</div>
+                        </div>
+                        <div class="crypto-price">$2,380.40</div>
+                        <div class="crypto-change positive">+1.8%</div>
+                    </div>
+                    <div class="crypto-item" data-crypto="sol">
+                        <div class="crypto-icon" style="background: #00d395;">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="crypto-info">
+                            <div class="crypto-name">Solana</div>
+                            <div class="crypto-symbol">SOL</div>
+                        </div>
+                        <div class="crypto-price">$98.65</div>
+                        <div class="crypto-change negative">-0.7%</div>
+                    </div>
+                    <div class="crypto-item" data-crypto="ada">
+                        <div class="crypto-icon" style="background: #ff007a;">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="crypto-info">
+                            <div class="crypto-name">Cardano</div>
+                            <div class="crypto-symbol">ADA</div>
+                        </div>
+                        <div class="crypto-price">$0.52</div>
+                        <div class="crypto-change positive">+3.2%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Investment Form -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Buy Cryptocurrency</h2>
+                    <div class="card-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                </div>
+                <div class="investment-form">
+                    <div class="form-group">
+                        <label for="crypto-select">Select Cryptocurrency</label>
+                        <select id="crypto-select" class="form-control">
+                            <option value="btc">Bitcoin (BTC)</option>
+                            <option value="eth">Ethereum (ETH)</option>
+                            <option value="sol">Solana (SOL)</option>
+                            <option value="ada">Cardano (ADA)</option>
+                            <option value="dot">Polkadot (DOT)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount (USD)</label>
+                        <input type="number" id="amount" class="form-control" placeholder="Enter amount" value="100">
+                    </div>
+                    <div class="form-group">
+                        <label>Estimated Quantity</label>
+                        <div class="form-control" id="estimated-quantity">0.00231 BTC</div>
+                    </div>
+                    <div class="investment-actions">
+                        <button class="btn btn-primary" id="buy-btn" style="flex: 1;">Buy Now</button>
+                        <button class="btn btn-outline" style="flex: 1;">Add to Watchlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Market Overview -->
+        <div class="market-overview">
+            <div class="market-header">
+                <h2 class="card-title">Market Overview</h2>
+                <div class="market-filters">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Gainers</button>
+                    <button class="filter-btn">Losers</button>
+                    <button class="filter-btn">New</button>
+                </div>
+            </div>
+            <div class="card">
+                <table class="market-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>24h Change</th>
+                            <th>Market Cap</th>
+                            <th>Volume (24h)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="market-data">
+                        <!-- Market data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2023 CryptoInvest. All rights reserved. Cryptocurrency investments are subject to market risk.</p>
+            <p style="margin-top: 0.5rem;">
+                <a href="#" style="color: var(--gray); margin: 0 0.5rem;">Terms</a> | 
+                <a href="#" style="color: var(--gray); margin: 0 0.5rem;">Privacy</a> | 
+                <a href="#" style="color: var(--gray); margin: 0 0.5rem;">Support</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+                                  </html>
