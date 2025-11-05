@@ -1,0 +1,204 @@
+// Cryptocurrency data
+const cryptoData = {
+    btc: {
+        name: "Bitcoin",
+        symbol: "BTC",
+        price: 43250.75,
+        change: 2.5,
+        icon: "fab fa-bitcoin",
+        color: "#f7931a",
+        marketCap: "842.3B",
+        volume: "28.4B"
+    },
+    eth: {
+        name: "Ethereum",
+        symbol: "ETH",
+        price: 2380.40,
+        change: 1.8,
+        icon: "fab fa-ethereum",
+        color: "#627eea",
+        marketCap: "286.7B",
+        volume: "15.2B"
+    },
+    sol: {
+        name: "Solana",
+        symbol: "SOL",
+        price: 98.65,
+        change: -0.7,
+        icon: "fas fa-coins",
+        color: "#00d395",
+        marketCap: "42.8B",
+        volume: "2.1B"
+    },
+    ada: {
+        name: "Cardano",
+        symbol: "ADA",
+        price: 0.52,
+        change: 3.2,
+        icon: "fas fa-chart-line",
+        color: "#ff007a",
+        marketCap: "18.3B",
+        volume: "890M"
+    },
+    dot: {
+        name: "Polkadot",
+        symbol: "DOT",
+        price: 7.35,
+        change: -1.2,
+        icon: "fas fa-dot-circle",
+        color: "#e6007a",
+        marketCap: "9.2B",
+        volume: "340M"
+    }
+};
+
+// Initialize the application
+document.addEventListener('DOMContentLoaded', function() {
+    // Populate market data
+    populateMarketData();
+    
+    // Set up event listeners
+    setupEventListeners();
+    
+    // Start real-time updates
+    setInterval(updatePrices, 5000);
+    
+    // Initialize the investment form
+    updateEstimatedQuantity();
+});
+
+// Populate market data table
+function populateMarketData() {
+    const marketTableBody = document.getElementById('market-data');
+    marketTableBody.innerHTML = '';
+    
+    Object.keys(cryptoData).forEach(key => {
+        const crypto = cryptoData[key];
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>
+                <div class="crypto-cell">
+                    <div class="crypto-cell-icon" style="background: ${crypto.color};">
+                        <i class="${crypto.icon}"></i>
+                    </div>
+                    <div>
+                        <div>${crypto.name}</div>
+                        <div style="color: var(--gray); font-size: 0.85rem;">${crypto.symbol}</div>
+                    </div>
+                </div>
+            </td>
+            <td class="crypto-price">$${crypto.price.toFixed(2)}</td>
+            <td><span class="price-change ${crypto.change >= 0 ? 'positive' : 'negative'}">${crypto.change >= 0 ? '+' : ''}${crypto.change.toFixed(2)}%</span></td>
+            <td>$${crypto.marketCap}</td>
+            <td>$${crypto.volume}</td>
+            <td><button class="btn btn-outline trade-btn" data-crypto="${key}">Trade</button></td>
+        `;
+        marketTableBody.appendChild(row);
+    });
+}
+
+// Set up event listeners
+function setupEventListeners() {
+    // Buy button
+    document.getElementById('buy-btn').addEventListener('click', function() {
+        const amount = document.getElementById('amount').value;
+        const cryptoSelect = document.getElementById('crypto-select');
+        const selectedCrypto = cryptoSelect.options[cryptoSelect.selectedIndex].text;
+        alert(`Successfully placed order to buy $${amount} of ${selectedCrypto}!`);
+    });
+    
+    // Trade buttons
+    document.querySelectorAll('.trade-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const cryptoKey = this.getAttribute('data-crypto');
+            const cryptoName = cryptoData[cryptoKey].name;
+            alert(`Opening trade interface for ${cryptoName}...`);
+        });
+    });
+    
+    // Investment form
+    const cryptoSelect = document.getElementById('crypto-select');
+    const amountInput = document.getElementById('amount');
+    
+    cryptoSelect.addEventListener('change', updateEstimatedQuantity);
+    amountInput.addEventListener('input', updateEstimatedQuantity);
+    
+    // Crypto item clicks
+    document.querySelectorAll('.crypto-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const cryptoKey = this.getAttribute('data-crypto');
+            const cryptoName = cryptoData[cryptoKey].name;
+            alert(`Viewing details for ${cryptoName}...`);
+        });
+    });
+}
+
+// Update prices with simulated changes
+function updatePrices() {
+    // Update top cryptocurrencies
+    document.querySelectorAll('.crypto-item').forEach(item => {
+        const cryptoKey = item.getAttribute('data-crypto');
+        const crypto = cryptoData[cryptoKey];
+        
+        // Simulate price change
+        const changePercent = (Math.random() - 0.5) * 2; // -1% to +1%
+        const newPrice = crypto.price * (1 + changePercent/100);
+        crypto.price = newPrice;
+        
+        // Update price display
+        const priceElement = item.querySelector('.crypto-price');
+        priceElement.textContent = '$' + newPrice.toFixed(2);
+        
+        // Update change display
+        const changeElement = item.querySelector('.crypto-change');
+        const changeClass = changePercent >= 0 ? 'positive' : 'negative';
+        changeElement.className = 'crypto-change ' + changeClass;
+        changeElement.textContent = (changePercent >= 0 ? '+' : '') + changePercent.toFixed(2) + '%';
+    });
+    
+    // Update market table
+    document.querySelectorAll('.market-table tbody tr').forEach(row => {
+        const cryptoName = row.querySelector('.crypto-cell div:last-child div:first-child').textContent.toLowerCase();
+        const cryptoKey = Object.keys(cryptoData).find(key => cryptoData[key].name.toLowerCase() === cryptoName);
+        
+        if (cryptoKey) {
+            const crypto = cryptoData[cryptoKey];
+            
+            // Update price
+            const priceCell = row.querySelector('.crypto-price');
+            priceCell.textContent = '$' + crypto.price.toFixed(2);
+            
+            // Update change
+            const changeCell = row.querySelector('.price-change');
+            const changeClass = crypto.change >= 0 ? 'positive' : 'negative';
+            changeCell.className = 'price-change ' + changeClass;
+            changeCell.textContent = (crypto.change >= 0 ? '+' : '') + crypto.change.toFixed(2) + '%';
+        }
+    });
+}
+
+// Update estimated quantity in investment form
+function updateEstimatedQuantity() {
+    const cryptoSelect = document.getElementById('crypto-select');
+    const amountInput = document.getElementById('amount');
+    const selectedCrypto = cryptoSelect.value;
+    const amount = parseFloat(amountInput.value) || 0;
+    
+    const crypto = cryptoData[selectedCrypto];
+    const price = crypto.price;
+    const quantity = amount / price;
+    
+    // Format quantity based on crypto
+    let formattedQuantity;
+    if (selectedCrypto === 'btc') {
+        formattedQuantity = quantity.toFixed(6);
+    } else if (selectedCrypto === 'eth') {
+        formattedQuantity = quantity.toFixed(4);
+    } else {
+        formattedQuantity = quantity.toFixed(2);
+    }
+    
+    // Update the display
+    document.getElementById('estimated-quantity').textContent = 
+        formattedQuantity + ' ' + crypto.symbol;
+}
